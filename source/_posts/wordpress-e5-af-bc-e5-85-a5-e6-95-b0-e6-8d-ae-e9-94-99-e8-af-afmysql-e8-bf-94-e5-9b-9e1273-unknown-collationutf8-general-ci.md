@@ -13,7 +13,7 @@ wordpress网站转移服务器空间，通过phpmyadmin导入sql数据时出现�
 MySQL返回:
 #1273 – Unknown collation:’utf8_general_ci’
 </pre>
-[![](http://ww3.sinaimg.cn/large/85f4065cgw1f0ghoudi48j20vx0bi0tn.jpg)](http://ww3.sinaimg.cn/large/85f4065cgw1f0ghoudi48j20vx0bi0tn.jpg)
+[![](https://ww3.sinaimg.cn/large/85f4065cgw1f0ghoudi48j20vx0bi0tn.jpg)](https://ww3.sinaimg.cn/large/85f4065cgw1f0ghoudi48j20vx0bi0tn.jpg)
 大致意思是“没有定义的编码集utf8”。搜索查询后发现utf8是utf8的一个衍生形式，utf-8里的一个字符只能最多支持3个字节，而utf8则扩展到一个字符支持4个字节。而utf8只有在mysql数据库版本是5.5.3+的时候才支持，网站原mysql的版本是5.6，导入的mysql版本是5.0，因此出现#1273错误。
 <!--more-->
 
@@ -46,3 +46,4 @@ utf8
 PS：我目前通过该方法导入成功，暂时没有发现有问题，但还是要先备份好数据再进行操作。
 
 方法二：把网站要用的mysql数据库升级到5.5.3以上版本。
+

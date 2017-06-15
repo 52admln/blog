@@ -8,7 +8,7 @@ tags:
 ---
 
 当我们开启TimeMachine之后，在使用外置磁盘时会把备份资料放在外置磁盘上，但是某一天发现如下图所示的奇怪现象，磁盘使用情况里面竟然有几十GB的“备份”文件。总共256GB容量，所以万万不能忍，想着要把它删掉。
-[![](http://ww2.sinaimg.cn/large/85f4065cgw1f0js8tj7uxj20ga0bc75t.jpg)](http://ww2.sinaimg.cn/large/85f4065cgw1f0js8tj7uxj20ga0bc75t.jpg)
+[![](https://ww2.sinaimg.cn/large/85f4065cgw1f0js8tj7uxj20ga0bc75t.jpg)](https://ww2.sinaimg.cn/large/85f4065cgw1f0js8tj7uxj20ga0bc75t.jpg)
 <!--more-->
 
 在Finder窗口中输入command+shift+G，然后在对话框中输入/Volumes进入磁盘目录管理，可以看到有一个MobileBackups文件夹，打开发现里面有一个Backups.backupdb，就是本地备份文件！我们需要删除它。
@@ -27,3 +27,4 @@ sudo tmutil enablelocal
 </pre>
 
 转载自：http://blog.csdn.net/rk2900/article/details/38755907
+
