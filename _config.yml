@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 52admin
 subtitle:
-description:
+description: 前端笔记
 keywords:
-author: John Doe
-language:
+author: 52admin
+language: zh-cn
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://note.52admin.net
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,9 +73,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: even
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://__GITHUB_TOKEN__@github.com/52admln/blog.git
+  branch: master
