@@ -79,5 +79,5 @@ theme: even
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://__GITHUB_TOKEN__@github.com/52admln/blog.git
+  repo: https://github.com/52admln/blog.git
   branch: master
