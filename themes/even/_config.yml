@@ -85,12 +85,12 @@ google_analytics:
 google_verification:
 
 # Disqus
-disqus_shortname:
+disqus_shortname: 52admin
 
 #Changyan
 changyan:
-  appid: cytLCGnIL
-  appkey: prod_91f4a81b37a57a657dacee6d651e5607
+  appid: 
+  appkey: 
 
 #LiveRe
 livere_datauid:
