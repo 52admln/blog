@@ -1,0 +1,101 @@
+# ===========================================
+# Site Information Settings
+# ===========================================
+
+# Site creation time
+since: 2014
+
+# Custom your favicon.ico in `site/source`
+favicon: /favicon.ico
+
+# Set feed link (false | default | your feed link)
+# false: disable
+# default: use `atom.xml`, generator for `hexo-generator-feed`
+rss: default
+
+# ===========================================
+# Menu Settings
+# ===========================================
+menu:
+  Home: /
+  Archives: /archives/
+  Tags: /tags
+  # Categories: /categories
+  About: /about
+
+# ===========================================
+# Theme Settings
+# ===========================================
+# color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
+color: Default
+
+toc: true
+
+# jQuery fancybox
+fancybox: true
+
+pjax: true
+
+copyright:
+  enable: true
+  # https://creativecommons.org/
+  license: '<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>'
+
+reward:
+  enable: true
+  qrCode:
+    wechat: https://blog.52admin.net/wp-content/uploads/2017/09/wechat.png
+    alipay: https://blog.52admin.net/wp-content/uploads/2017/09/alipay.png
+
+# ===========================================
+# Social links Settings
+# ===========================================
+social:
+  email: ismrwang@gmail.com
+  stack-overflow:
+  twitter: https://twitter.com/admln52
+  facebook:
+  linkedin:
+  google:
+  github: https://github.com/52admln
+  weibo: http://weibo.com/52admin
+  zhihu:
+  douban:
+  pocket:
+  tumblr:
+  instagram:
+
+# ===========================================
+# Third Party Services Settings
+# ===========================================
+
+# LeanCloud
+leancloud:
+  app_id: 
+  app_key: 
+
+# Baidu Analytics
+baidu_analytics: c27e87fe62c63150bfb3109287799868
+# Baidu Verification
+baidu_verification:
+
+# Google Analytics
+google_analytics:
+# Google Verification
+google_verification:
+
+# Disqus
+disqus_shortname:
+
+#Changyan
+changyan:
+  appid: cytLCGnIL
+  appkey: prod_91f4a81b37a57a657dacee6d651e5607
+
+#LiveRe
+livere_datauid:
+
+# ===========================================
+# Version
+# ===========================================
+version: 2.9.0
