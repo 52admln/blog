@@ -2,7 +2,7 @@
 <html lang="{{ config.language }}">
   <head>
     {% include '_partial/head.swig' %}
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | 前端笔记</title>
   </head>
 
   <body>
