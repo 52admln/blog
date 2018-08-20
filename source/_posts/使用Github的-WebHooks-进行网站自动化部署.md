@@ -1,7 +1,9 @@
 ---
 title: 使用Github的 WebHooks 进行网站自动化部署
 date: 2018-08-20 09:50:10
-tags: Webhooks,Github
+tags:
+- Webhooks
+- Github
 ---
 
 
