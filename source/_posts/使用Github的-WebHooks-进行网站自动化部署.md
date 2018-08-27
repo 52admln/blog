@@ -10,7 +10,7 @@ tags:
 ## 原理
 利用Github在仓库进行操作时，可以通过配置webhook向服务器发送请求，在服务器端接到请求后，使用脚本来自动进行git pull操作。
 
-![image](http://wx3.sinaimg.cn/large/85f4065cgy1ftv5b4a0coj20uy0ly43u.jpg)
+![image](https://wx3.sinaimg.cn/large/85f4065cgy1ftv5b4a0coj20uy0ly43u.jpg)
 
 <!-- more -->
 
