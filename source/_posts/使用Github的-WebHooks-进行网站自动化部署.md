@@ -184,7 +184,7 @@ pm2 start webhook.js
 
 进入需要自动部署的项目的github地址添加webhook，进入Settings设置页面，点击左侧的 Webhooks
 
-![image](http://wx2.sinaimg.cn/large/85f4065cgy1ftv4wb3sbsj21jy172gtd.jpg)
+![image](https://wx2.sinaimg.cn/large/85f4065cgy1ftv4wb3sbsj21jy172gtd.jpg)
 
 
 参考地址：
