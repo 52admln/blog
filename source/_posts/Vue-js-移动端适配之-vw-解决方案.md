@@ -161,7 +161,7 @@ npm install postcss-px-to-viewport-opt -S
 ```
 
 
-5. 参考资料
+## 5. 参考资料
 
 [Vue+ts下的移动端vw适配（第三方库css问题）](https://zhuanlan.zhihu.com/p/36913200)
 [再聊移动端页面的适配](https://www.w3cplus.com/css/vw-for-layout.html)
