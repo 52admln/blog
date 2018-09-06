@@ -11,7 +11,10 @@ tags:
 ```bash
 npm i postcss-aspect-ratio-mini postcss-px-to-viewport postcss-write-svg postcss-cssnext postcss-viewport-units cssnano --S
 ```
-
+还需要安装 cssnano-preset-advanced
+```bash
+npm i cssnano-preset-advanced --save-dev
+```
 <!-- more -->
 
 ## 2. 对 PostCss 进行配置
