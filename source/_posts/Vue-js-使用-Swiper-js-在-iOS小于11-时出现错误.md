@@ -17,7 +17,7 @@ npm i swiper -S
 ```
 SyntaxError: Unexpected keyword 'const'. Const declarations are not supported in strict mode.
 ```
-
+<!-- more -->
 ## 原因
 
 Swiper.js 这个 npm 包里面还使用了 `dom7` 和 `ssr-window`，所以需要对这两个插件进行 Babel 转 ES5
