@@ -3,12 +3,6 @@ language: node_js
 node_js:
   - stable
 
-# 缓存，可以节省集成的时间
-cache:
-  npm: true
-  directories:
-    - node_modules
-
 install:
   - npm install
 
