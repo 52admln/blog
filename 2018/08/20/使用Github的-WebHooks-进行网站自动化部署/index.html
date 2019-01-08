@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="使用Github的 WebHooks 进行网站自动化部署"/>
+
+
+
+
+  <meta name="keywords" content="前端,笔记,FED,52admin,52admln,admln52" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="52admin">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.9.0" />
+
+
+
+<link rel="canonical" href="https://note.52admin.net/2018/08/20/使用Github的-WebHooks-进行网站自动化部署/"/>
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css" />
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.9.0" />
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c27e87fe62c63150bfb3109287799868";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<script>
+  window.config = {"title":"52admin","subtitle":null,"description":"前端笔记","author":"52admin","language":"zh-cn","timezone":null,"url":"https://note.52admin.net","root":"/","permalink":":year/:month/:day/:title/","permalink_defaults":null,"source_dir":"source","public_dir":"public","tag_dir":"tags","archive_dir":"archives","category_dir":"categories","code_dir":"downloads/code","i18n_dir":":lang","skip_render":null,"new_post_name":":title.md","default_layout":"post","titlecase":false,"external_link":true,"filename_case":0,"render_drafts":false,"post_asset_folder":false,"relative_link":false,"future":true,"highlight":{"enable":true,"auto_detect":false,"line_number":true,"tab_replace":null,"first_line_number":"always1"},"default_category":"uncategorized","category_map":null,"tag_map":null,"date_format":"YYYY-MM-DD","time_format":"HH:mm:ss","per_page":10,"pagination_dir":"page","theme":"even","deploy":{"type":"git","repo":"https://github.com/52admln/blog.git","branch":"master"},"ignore":[],"keywords":"前端,笔记,FED,52admin,52admln,admln52","index_generator":{"per_page":10,"order_by":"-date","path":""},"archive_generator":{"per_page":10,"yearly":true,"monthly":true,"daily":false},"category_generator":{"per_page":10},"feed":{"type":"atom","limit":20,"hub":"","content":true,"content_limit":140,"content_limit_delim":"","path":"atom.xml"},"tag_generator":{"per_page":10},"marked":{"gfm":true,"pedantic":false,"sanitize":false,"tables":true,"breaks":true,"smartLists":true,"smartypants":true,"modifyAnchors":"","autolink":true},"server":{"port":4000,"log":false,"ip":"0.0.0.0","compress":false,"header":true},"since":2014,"favicon":"/favicon.ico","rss":"default","menu":{"Home":"/","Archives":"/archives/","Tags":"/tags","About":"/about"},"color":"Default","toc":true,"fancybox":true,"pjax":true,"copyright":{"enable":true,"license":"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\">知识共享署名-非商业性使用 4.0 国际许可协议</a>"},"reward":{"enable":true,"qrCode":{"wechat":"https://blog.52admin.net/wp-content/uploads/2017/09/wechat.png","alipay":"https://blog.52admin.net/wp-content/uploads/2017/09/alipay.png"}},"social":{"email":"ismrwang@gmail.com","stack-overflow":null,"twitter":"https://twitter.com/admln52","facebook":null,"linkedin":null,"google":null,"github":"https://github.com/52admln","weibo":"http://weibo.com/52admin","zhihu":null,"douban":null,"pocket":null,"tumblr":null,"instagram":null},"leancloud":{"app_id":null,"app_key":null},"baidu_analytics":"c27e87fe62c63150bfb3109287799868","baidu_verification":null,"google_analytics":null,"google_verification":null,"disqus_shortname":"52admin","changyan":{"appid":null,"appkey":null},"livere_datauid":null,"version":"2.9.0"};
+</script>
+
+    <title> 使用Github的 WebHooks 进行网站自动化部署 - 52admin  | 前端笔记</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">52admin</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/tags">
+        <li class="mobile-menu-item">
+          
+          
+            标签
+          
+        </li>
+      </a>
+    
+      <a href="/about">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">52admin</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/tags">
+            
+            
+              标签
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          使用Github的 WebHooks 进行网站自动化部署
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-08-20
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建-Webhook-服务"><span class="toc-text">构建 Webhook 服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同一服务多个-webhook"><span class="toc-text">同一服务多个 webhook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完成-shell-脚本"><span class="toc-text">完成 shell 脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用pm2进行进程守护"><span class="toc-text">使用pm2进行进程守护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进入Gtihub后台进行设置"><span class="toc-text">进入Gtihub后台进行设置</span></a></li></ol>
+    </div>
+  </div>
+
+
+
+    <div class="post-content">
+      
+        <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用Github在仓库进行操作时，可以通过配置webhook向服务器发送请求，在服务器端接到请求后，使用脚本来自动进行git pull操作。</p>
+<p><img src="https://wx3.sinaimg.cn/large/85f4065cgy1ftv5b4a0coj20uy0ly43u.jpg" alt="image"></p>
+<a id="more"></a>
+<p><a href="https://www.xiajunyi.com/pages/p41.html" target="_blank" rel="noopener">图片来源：Github的webhook触发vps上的脚本</a></p>
+<h2 id="构建-Webhook-服务"><a href="#构建-Webhook-服务" class="headerlink" title="构建 Webhook 服务"></a>构建 Webhook 服务</h2><p>通过执行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g github-webhook-handler</span><br></pre></td></tr></table></figure></p>
+<p>来安装  github-webhook-handler 中间件</p>
+<p>新建文件 <code>webhook.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> createHandler = <span class="built_in">require</span>(<span class="string">'github-webhook-handler'</span>)</span><br><span class="line"><span class="keyword">var</span> handler = createHandler(&#123; <span class="attr">path</span>: <span class="string">'/'</span>, <span class="attr">secret</span>: <span class="string">'root'</span> &#125;)</span><br><span class="line"><span class="comment">// 上面的 secret 保持和 GitHub 后台设置的一致</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run_cmd</span>(<span class="params">cmd, args, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</span><br><span class="line">  <span class="keyword">var</span> child = spawn(cmd, args);</span><br><span class="line">  <span class="keyword">var</span> resp = <span class="string">""</span>;</span><br><span class="line">  child.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">buffer</span>) </span>&#123; resp += buffer.toString(); &#125;);</span><br><span class="line">  child.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; callback (resp) &#125;);</span><br><span class="line">&#125;</span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  handler(req, res, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    res.statusCode = <span class="number">404</span></span><br><span class="line">    res.end(<span class="string">'no such location'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).listen(<span class="number">7777</span>)</span><br><span class="line">handler.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'Error:'</span>, err.message)</span><br><span class="line">&#125;)</span><br><span class="line">handler.on(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Received a push event for %s to %s'</span>,</span><br><span class="line">    event.payload.repository.name,</span><br><span class="line">    event.payload.ref);</span><br><span class="line">    run_cmd(<span class="string">'sh'</span>, [<span class="string">'./deploy.sh'</span>,event.payload.repository.name], <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123; <span class="built_in">console</span>.log(text) &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var handler = createHandler(&#123; path: &apos;/&apos;, secret: &apos;root&apos; &#125;)</span><br></pre></td></tr></table></figure></p>
+<p><code>secret</code> 字段为 Github 中设置的，需要与这里相对应</p>
+<blockquote>
+<p>注意，在运行的时候如果提示 <code>github-webhook-handler is not defined</code> 未找到 ，可以在目录中执行 <code>npm link github-webhook-handler</code></p>
+</blockquote>
+<h2 id="同一服务多个-webhook"><a href="#同一服务多个-webhook" class="headerlink" title="同一服务多个 webhook"></a>同一服务多个 webhook</h2><p>当你有多个仓库需要自动部署时，可以在一个服务上开启多个 webhook。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> createHandler = <span class="built_in">require</span>(<span class="string">'node-github-webhook'</span>)</span><br><span class="line"><span class="keyword">var</span> handler = createHandler([ <span class="comment">// 多个仓库</span></span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/app1'</span>,</span><br><span class="line">    secret: <span class="string">'CUSTOM'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    path: <span class="string">'/app2'</span>,</span><br><span class="line">    secret: <span class="string">'CUSTOM'</span></span><br><span class="line">  &#125;</span><br><span class="line">])</span><br><span class="line"><span class="comment">// var handler = createHandler(&#123; path: '/webhook1', secret: 'secret1' &#125;) // 单个仓库</span></span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  handler(req, res, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123; </span><br><span class="line">    res.statusCode = <span class="number">404</span></span><br><span class="line">    res.end(<span class="string">'no such location'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;).listen(<span class="number">7777</span>)</span><br><span class="line"></span><br><span class="line">handler.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">'Error:'</span>, err.message)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">handler.on(<span class="string">'push'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(</span><br><span class="line">    <span class="string">'Received a push event for %s to %s'</span>,</span><br><span class="line">    event.payload.repository.name,</span><br><span class="line">    event.payload.ref</span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">switch</span> (event.path) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'/app1'</span>:</span><br><span class="line">      runCmd(<span class="string">'sh'</span>, [<span class="string">'./app1_deploy.sh'</span>, event.payload.repository.name], <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; <span class="built_in">console</span>.log(text) &#125;)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'/app2'</span>:</span><br><span class="line">      runCmd(<span class="string">'sh'</span>, [<span class="string">'./app2_deploy.sh'</span>, event.payload.repository.name], <span class="function"><span class="keyword">function</span> (<span class="params">text</span>) </span>&#123; <span class="built_in">console</span>.log(text) &#125;)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="comment">// 处理其他</span></span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">runCmd</span> (<span class="params">cmd, args, callback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn</span><br><span class="line">  <span class="keyword">var</span> child = spawn(cmd, args)</span><br><span class="line">  <span class="keyword">var</span> resp = <span class="string">''</span></span><br><span class="line">  child.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">buffer</span>) </span>&#123;</span><br><span class="line">    resp += buffer.toString()</span><br><span class="line">  &#125;)</span><br><span class="line">  child.stdout.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    callback(resp)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同一服务多个webhook时，最终你的payload URL 则为：<code>http:/yourdomain:7777/app1</code> 或者 <code>http:/yourdomain:7777/app2</code> ，注意我在实践过程中发现，不能使用 / 目录，会无法监听到 webhook。</p>
+</blockquote>
+<p>参考地址：<a href="https://github.com/rvagg/github-webhook-handler/pull/22#issuecomment-274301907" target="_blank" rel="noopener">https://github.com/rvagg/github-webhook-handler/pull/22#issuecomment-274301907</a></p>
+<h2 id="完成-shell-脚本"><a href="#完成-shell-脚本" class="headerlink" title="完成 shell 脚本"></a>完成 shell 脚本</h2><p>在使用脚本之前，先要对网站根目录做一些处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 打开网站根目录</span><br><span class="line">cd /home/wwwroot/domain.com</span><br><span class="line"># 采用 Git 文件控制</span><br><span class="line">git init</span><br><span class="line"># 添加远程 Git 仓库地址</span><br><span class="line">git remote add origin https://xx.git</span><br></pre></td></tr></table></figure>
+<p>参考地址：<br><a href="https://stackoverflow.com/questions/1125968/how-do-i-force-git-pull-to-overwrite-local-files" target="_blank" rel="noopener">How do I force “git pull” to overwrite local files?</a></p>
+<p>然后再创建 <code>deploy.sh</code>，与 <code>webhook.js</code> 在同一个目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 网站的根目录</span></span><br><span class="line">WEB_PATH=<span class="string">'/home/wwwroot/domain.com'</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"start deployment"</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$WEB_PATH</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"fetching from remote..."</span></span><br><span class="line"><span class="comment"># 为了避免冲突，强制更新本地文件</span></span><br><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"done"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于 Linux 文件权限问题，可能无法执行，建议先执行 <code>chmod 777 ./deploy.sh</code></p>
+</blockquote>
+<h2 id="使用pm2进行进程守护"><a href="#使用pm2进行进程守护" class="headerlink" title="使用pm2进行进程守护"></a>使用pm2进行进程守护</h2><p>安装pm2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i pm2 -g</span><br></pre></td></tr></table></figure></p>
+<p>运行webhook.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start webhook.js</span><br></pre></td></tr></table></figure></p>
+<h2 id="进入Gtihub后台进行设置"><a href="#进入Gtihub后台进行设置" class="headerlink" title="进入Gtihub后台进行设置"></a>进入Gtihub后台进行设置</h2><p>进入需要自动部署的项目的github地址添加webhook，进入Settings设置页面，点击左侧的 Webhooks</p>
+<p><img src="https://wx2.sinaimg.cn/large/85f4065cgy1ftv4wb3sbsj21jy172gtd.jpg" alt="image"></p>
+<p>参考地址：</p>
+<p><a href="http://zhuxiblog.com/2017/03/13/Github-webhook-vps/" target="_blank" rel="noopener">利用Github的Webhook进行静态网站的自动化部署</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://note.52admin.net">52admin</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://note.52admin.net/2018/08/20/使用Github的-WebHooks-进行网站自动化部署/">https://note.52admin.net/2018/08/20/使用Github的-WebHooks-进行网站自动化部署/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://blog.52admin.net/wp-content/uploads/2017/09/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="https://blog.52admin.net/wp-content/uploads/2017/09/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Webhooks/">Webhooks</a>
+            
+              <a href="/tags/Github/">Github</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/09/03/Vue-js-移动端适配之-vw-解决方案/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Vue.js 移动端适配之 vw 解决方案</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:ismrwang@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://twitter.com/admln52" class="iconfont icon-twitter" title="twitter"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/52admln" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://weibo.com/52admin" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2014 - 
+    
+    2019
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">52admin</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://note.52admin.net/2018/08/20/使用Github的-WebHooks-进行网站自动化部署/';
+        this.page.identifier = '2018/08/20/使用Github的-WebHooks-进行网站自动化部署/';
+        this.page.title = '使用Github的 WebHooks 进行网站自动化部署';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//52admin.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+  
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.9.0"></script>
+
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+  </body>
+</html>
